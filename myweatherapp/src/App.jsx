@@ -86,7 +86,11 @@ function App() {
   };
 
   const currentWeatherLocation = selectedCity || currentLocation || geoLocation;
-  const isLoading = weatherLoading || (geoLoading && !currentLocation);
+  const isLoading =
+    weatherLoading ||
+    (geoLoading && !currentLocation) ||
+    !currentWeatherLocation ||
+    !weatherData;
 
   return (
     <div className={`min-h-screen bg-${backgroundTheme} weather-transition`}>
@@ -99,7 +103,7 @@ function App() {
                 <div className="w-12 h-12 glass rounded-2xl flex items-center justify-center shadow-glow">
                   <MapPin size={24} className="text-white" />
                 </div>
-                <h1 className="text-4xl font-bold text-white tracking-tight">Weather</h1>
+                <h1 className="text-4xl font-bold text-white tracking-tight">Anshika's Weather App</h1>
               </div>
             </div>
             
@@ -157,7 +161,7 @@ function App() {
                   {weatherData?.current && (
                     <>
                       <div className="flex justify-between items-center p-3 bg-white bg-opacity-10 rounded-xl">
-                        <span className="text-white text-opacity-80 font-medium">Sunrise</span>
+                        <span className="text-black text-opacity-60 font-medium">Sunrise</span>
                         <span className="font-semibold text-lg">
                           {new Date(weatherData.current.sunrise * 1000).toLocaleTimeString('en-US', {
                             hour: '2-digit',
@@ -166,7 +170,7 @@ function App() {
                         </span>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-white bg-opacity-10 rounded-xl">
-                        <span className="text-white text-opacity-80 font-medium">Sunset</span>
+                        <span className="text-black text-opacity-60 font-medium">Sunset</span>
                         <span className="font-semibold text-lg">
                           {new Date(weatherData.current.sunset * 1000).toLocaleTimeString('en-US', {
                             hour: '2-digit',
@@ -175,8 +179,8 @@ function App() {
                         </span>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-white bg-opacity-10 rounded-xl">
-                        <span className="text-white text-opacity-80 font-medium">Pressure</span>
-                        <span className="font-semibold text-lg">{weatherData.current.pressure} hPa</span>
+                        <span className="text-black text-opacity-60 font-medium">Pressure</span>
+                        <span className="font-semibold text-lg ">{weatherData.current.pressure} hPa</span>
                       </div>
                     </>
                   )}
@@ -198,7 +202,7 @@ function App() {
                       {currentWeatherLocation.country}
                     </div>
                   )}
-                  <div className="text-sm text-white text-opacity-60 bg-white bg-opacity-10 px-3 py-2 rounded-lg inline-block">
+                  <div className="text-sm text-black text-opacity-60 bg-white bg-opacity-10 px-3 py-2 rounded-lg inline-block">
                     {currentWeatherLocation?.lat?.toFixed(2)}, {currentWeatherLocation?.lon?.toFixed(2)}
                   </div>
                 </div>

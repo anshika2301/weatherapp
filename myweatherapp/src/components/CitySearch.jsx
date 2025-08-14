@@ -74,7 +74,7 @@ export const CitySearch = ({ onCitySelect, onClose }) => {
         <div className="p-8 border-b border-white border-opacity-20">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-white flex items-center">
-              <div className="w-1 h-8 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full mr-3"></div>
+              <div className="w-1 h-8 bg-gradient-to-b from-white to-purple-500 rounded-full mr-3"></div>
               Search Location
             </h2>
             <button
@@ -121,8 +121,8 @@ export const CitySearch = ({ onCitySelect, onClose }) => {
                     className="w-full text-left p-4 bg-white bg-opacity-15 hover:bg-opacity-25 rounded-2xl transition-all duration-300 flex items-center justify-between hover-lift"
                   >
                     <div className="flex items-center text-white">
-                      <div className="p-2 bg-blue-400 bg-opacity-30 rounded-full mr-4">
-                        <MapPin size={16} className="text-blue-200" />
+                      <div className="p-2 bg-white bg-opacity-30 rounded-full mr-4">
+                        <MapPin size={16} className="text-white" />
                       </div>
                       <div>
                         <span className="font-semibold text-lg">{city.name}</span>
@@ -160,13 +160,13 @@ export const CitySearch = ({ onCitySelect, onClose }) => {
                       onClick={() => handleCitySelect(city)}
                       className="w-full text-left p-4 bg-white bg-opacity-15 hover:bg-opacity-25 rounded-2xl transition-all duration-300 flex items-center justify-between hover-lift"
                     >
-                      <div className="flex items-center text-white">
-                        <div className="p-2 bg-green-400 bg-opacity-30 rounded-full mr-4">
+                      <div className="flex items-center text-black">
+                        <div className="p-2 bg-teal-400 bg-opacity-30 rounded-full mr-4">
                           <MapPin size={16} className="text-green-200" />
                         </div>
                         <div>
                           <span className="font-semibold text-lg">{city.name}</span>
-                          {city.country && <span className="text-opacity-70 ml-2 text-sm">({city.country})</span>}
+                          {city.country && <span className=" text-opacity-70 ml-2 text-sm">({city.country})</span>}
                         </div>
                       </div>
                       <button

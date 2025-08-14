@@ -9,12 +9,14 @@ export const useWeather = (location) => {
   const [units, setUnits] = useState(getPreferredUnits());
 
   const fetchWeather = useCallback(async (lat, lon, weatherUnits = units) => {
-    if (!lat || !lon) return;
-    
+    if (!lat || !lon) {
+      console.error('Invalid location:', lat, lon);
+      return;
+    }
     setLoading(true);
     setError(null);
-    
     try {
+      console.log('Fetching weather for:', lat, lon, weatherUnits);
       const data = await fetchWeatherData(lat, lon, weatherUnits);
       setWeatherData(data);
     } catch (err) {

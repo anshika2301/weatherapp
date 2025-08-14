@@ -78,7 +78,7 @@ const SnowAnimation = () => (
     {[...Array(8)].map((_, i) => (
       <div
         key={i}
-        className="absolute w-1 h-1 bg-white rounded-full animate-bounce"
+        className="absolute w-1 h-1 bg-black rounded-full animate-bounce"
         style={{
           left: `${15 + (i % 4) * 18}%`,
           top: `${50 + Math.floor(i / 4) * 20}%`,

@@ -5,13 +5,11 @@ const GEO_URL = 'https://api.openweathermap.org/geo/1.0';
 export const fetchWeatherData = async (lat, lon, units = 'metric') => {
   try {
     const response = await fetch(
-      `${BASE_URL}/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}&exclude=minutely,alerts`
+      `${BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
     );
-    
     if (!response.ok) {
       throw new Error('Weather data fetch failed');
     }
-    
     return await response.json();
   } catch (error) {
     console.error('Error fetching weather data:', error);

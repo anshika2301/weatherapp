@@ -3,13 +3,15 @@ import { MapPin, Droplets, Wind, Eye, Thermometer } from 'lucide-react';
 import { WeatherAnimation } from './WeatherAnimation';
 
 export const WeatherCard = ({ weatherData, location, units }) => {
-  if (!weatherData) return null;
+  if (!weatherData || !weatherData.main) {
+    return <div>Loading weather data...</div>;
+  }
 
-  const { current } = weatherData;
-  const temperature = Math.round(current.temp);
-  const feelsLike = Math.round(current.feels_like);
-  const condition = current.weather[0]?.main;
-  const description = current.weather[0]?.description;
+  // Use correct properties from OpenWeatherMap /weather API
+  const temperature = Math.round(weatherData.main.temp);
+  const feelsLike = Math.round(weatherData.main.feels_like);
+  const condition = weatherData.weather[0]?.main;
+  const description = weatherData.weather[0]?.description;
 
   const formatTime = (timestamp) => {
     return new Date(timestamp * 1000).toLocaleTimeString('en-US', {
@@ -23,15 +25,15 @@ export const WeatherCard = ({ weatherData, location, units }) => {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center space-x-2">
-          <div className="p-2 bg-white bg-opacity-20 rounded-full">
+          <div className="p-2 bg-blue-400 bg-opacity-20 rounded-full">
             <MapPin size={18} className="text-white" />
           </div>
           <span className="text-xl font-semibold">
             {location?.name || 'Current Location'}
           </span>
         </div>
-        <div className="text-right text-sm text-white text-opacity-80 bg-white bg-opacity-10 px-3 py-1 rounded-full">
-          {formatTime(current.dt)}
+        <div className="text-right text-sm text-black text-opacity-80 bg-yellow-400 bg-opacity-10 px-3 py-1 rounded-full">
+          {formatTime(weatherData.dt)}
         </div>
       </div>
 
@@ -68,21 +70,21 @@ export const WeatherCard = ({ weatherData, location, units }) => {
               <Droplets size={18} className="text-blue-200" />
             </div>
             <div>
-              <div className="text-white text-opacity-70 text-sm font-medium">Humidity</div>
-              <div className="text-xl font-semibold">{current.humidity}%</div>
+              <div className="text-black text-opacity-70 text-sm font-medium">Humidity</div>
+              <div className="text-xl text-black font-semibold">{weatherData.main.humidity}%</div>
             </div>
           </div>
         </div>
 
         <div className="bg-white bg-opacity-15 rounded-2xl p-5 hover-lift transition-all duration-300 hover:bg-opacity-20">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-gray-400 bg-opacity-30 rounded-full">
-              <Wind size={18} className="text-gray-200" />
+            <div className="p-2 bg-yellow-400 bg-opacity-30 rounded-full">
+              <Wind size={18} className="text-grey-200" />
             </div>
             <div>
-              <div className="text-white text-opacity-70 text-sm font-medium">Wind Speed</div>
-              <div className="text-xl font-semibold">
-                {Math.round(current.wind_speed)} {units === 'metric' ? 'm/s' : 'mph'}
+              <div className="text-black text-opacity-70 text-sm font-medium">Wind Speed</div>
+              <div className="text-xl  text-black font-semibold">
+                {Math.round(weatherData.wind.speed)} {units === 'metric' ? 'm/s' : 'mph'}
               </div>
             </div>
           </div>
@@ -94,9 +96,9 @@ export const WeatherCard = ({ weatherData, location, units }) => {
               <Eye size={18} className="text-green-200" />
             </div>
             <div>
-              <div className="text-white text-opacity-70 text-sm font-medium">Visibility</div>
-              <div className="text-xl font-semibold">
-                {current.visibility ? Math.round(current.visibility / 1000) : 10} km
+              <div className="text-black text-opacity-70 text-sm font-medium">Visibility</div>
+              <div className="text-xl  text-black font-semibold">
+                {weatherData.visibility ? Math.round(weatherData.visibility / 1000) : 10} km
               </div>
             </div>
           </div>
@@ -108,8 +110,8 @@ export const WeatherCard = ({ weatherData, location, units }) => {
               <Thermometer size={18} className="text-red-200" />
             </div>
             <div>
-              <div className="text-white text-opacity-70 text-sm font-medium">UV Index</div>
-              <div className="text-xl font-semibold">{current.uvi || 'N/A'}</div>
+              <div className="text-black text-opacity-70 text-sm font-medium">UV Index</div>
+              <div className="text-xl text-black font-semibold">N/A</div>
             </div>
           </div>
         </div>
