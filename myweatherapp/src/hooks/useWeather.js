@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { fetchWeatherData } from '../utils/weatherapi';
+import { fetchWeatherData } from '../utils/weatherApi';
 import { getPreferredUnits } from '../utils/storage';
 
 export const useWeather = (location) => {
